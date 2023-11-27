@@ -59,3 +59,24 @@ const sentence1 = Object.values(person.friends).reduce((message, friend) => {
   return message;
 }, '');
 console.log(sentence1.trim());
+
+console.warn(`Prin aceeasi metoda, afiseaza o lista cu numele complet al prietenilor.
+`);
+Object.values(person.friends).forEach(({ surname, name }) => {
+  console.log(`${name} ${surname}`);
+});
+
+console.warn(`Afiseaza propozitia: “Prietenii mei sunt Larry Larryson,
+ Steven Stevenson si Carol Carolson.” folosind Object.values()
+`);
+const friendsNames = Object.values(person.friends).map(
+  (friend) => `${friend.name} ${friend.surname}`,
+);
+const friendsSentence = `Prietenii mei sunt ${friendsNames.join(', ')}.`;
+console.log(friendsSentence);
+
+console.warn(`In mod similar, afiseaza propozitia  “Larry are xx ani. Steven are …”
+`);
+Object.values(person.friends).forEach((friend) => {
+  console.log(`${friend.name} are ${friend.age} ani.`);
+});

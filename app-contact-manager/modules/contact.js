@@ -14,6 +14,11 @@ export const render = (contact) => {
   <button title="Delete"
   type = "button"
   class = "btn btn-secondary delete-friend">Delete</button>
+
+  <button title="Reset"
+  type = "reset"
+  class = "btn btn-danger delete-friend">Reset</button>
 `;
+
   return container;
 };

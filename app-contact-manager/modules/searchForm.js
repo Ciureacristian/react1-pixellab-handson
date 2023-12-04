@@ -44,6 +44,16 @@ searchForm.addEventListener('submit', (event) => {
     );
   }
 
+  if (searchValue.length < 3) {
+    addMessage(
+      renderMessage(
+        'Please enter at least three letters for search',
+        'warning',
+      ),
+    );
+    return;
+  }
+
   const fragment = new DocumentFragment();
   contacts.forEach((contact) => {
     fragment.append(renderContact(contact));

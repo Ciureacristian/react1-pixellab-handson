@@ -7,6 +7,8 @@ export const findContact = (needle = 'query') => {
       return typeof part === 'number' || typeof part === 'string';
     });
 
+    needle = needle.toLowerCase();
+
     if (values.join('').includes(needle)) {
       return true;
     }
@@ -15,4 +17,22 @@ export const findContact = (needle = 'query') => {
   });
 
   return results;
+};
+
+export const deleteContact = (contactId) => {
+  contactId = parseInt(contactId);
+  if (!contactId || isNaN(contactId)) {
+    return;
+  }
+
+  const contactIndex = contacts.findIndex((contact) => {
+    const { id } = contact;
+
+    return contactId === id;
+  });
+
+  if (contactIndex >= 0) {
+    //splice mutates
+    contacts.splice(contactIndex, 1);
+  }
 };

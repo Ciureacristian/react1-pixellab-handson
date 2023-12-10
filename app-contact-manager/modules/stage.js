@@ -27,6 +27,15 @@ stage.addEventListener('click', (event) => {
   const parent = button.parentElement;
   const contactId = parent.dataset.contactId;
 
+  // ask confirmation
+  const isConfirm = window.confirm(
+    'Are you sure you want to delete this contact?',
+  );
+
+  if (!isConfirm) {
+    return;
+  }
+
   deleteContact(contactId);
   parent.remove();
   addMessage(renderMessage('Contact removed', 'danger'));

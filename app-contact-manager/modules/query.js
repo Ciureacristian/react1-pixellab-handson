@@ -68,10 +68,61 @@ export const editContact = (contact) => {
   }
 };
 
-//addPet
+// addPet
 export const addPet = (contactId, pet) => {
   const contact = getContact(contactId);
   contact.pets = contact.pets || [];
-  //push mutates
+
+  // push mutates
   contact.pets.push(pet);
+};
+
+//deletePet
+export const deletePet = (contactId, petId) => {
+  contactId = Number(contactId);
+  petId = Number(petId);
+
+  if (isNaN(contactId) || isNaN(petId)) {
+    return;
+  }
+
+  const contactIndex = contacts.findIndex((contact) => {
+    const { id } = contact;
+
+    return contactId === id;
+  });
+
+  if (contactIndex >= 0) {
+    const petIndex = contacts[contactIndex].pets.findIndex((pet) => {
+      const { id } = pet;
+
+      return petId === id;
+    });
+
+    if (petIndex >= 0) {
+      contacts[contactIndex].pets.splice(petIndex, 1);
+    }
+  }
+};
+
+//editPet
+export const editPet = (contactId, editedPet) => {
+  const contact = getContact(contactId);
+
+  if (!contact) {
+    return;
+  }
+
+  const petIndex = contact.pets.findIndex((pet) => pet.id === editedPet.id);
+
+  if (petIndex >= 0) {
+    const petProperties = Object.keys(contact.pets[petIndex]);
+
+    for (let i = 0; i < petProperties.length; i++) {
+      const propertyName = petProperties[i];
+
+      contact.pets[petIndex][propertyName] =
+        editedPet[propertyName] || contact.pets[petIndex][propertyName];
+    }
+  }
 };

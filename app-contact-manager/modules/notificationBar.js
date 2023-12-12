@@ -21,6 +21,9 @@ export const addMessage = (messageElement, autoCloseDuration = null) => {
   messageElement.appendChild(closeButton);
 };
 
+  // Add click event to the contact name if available
+
+
 // clearMessages
 export const clearMessages = () => {
   notificationBar.innerHTML = '';
